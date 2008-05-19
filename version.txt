@@ -9,6 +9,11 @@ Release Date: 05/18/08
       Author:Cliff Hall <cliff.hall@puremvc.org>
      License: Creative Commons Attribution 3.0 United States License
 --------------------------------------------------------------------------
+0.2 - Checked in API Docs for the utility, updating a bunch of the inline
+      code comments. Also, added the functionality for Filter instances
+      to have instance names and to receive their parameters via control
+      messages. 
+      
 0.1 - Checked in initial classes and license/version files. Most of the
       functionality is expected to work at this point, though there are
       as yet no unit tests or demos. Also, this has been through the 
