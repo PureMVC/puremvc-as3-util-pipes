@@ -33,36 +33,42 @@ package org.puremvc.as3.multicore.utilities.pipes.plumbing
 		/**
 		 * Handle the incoming message.
 		 * <P>
-		 * Normal messages are stored or written thru depending on
-		 * the current state of the Queue.</P> 
+		 * If message type is normal, filter the message and 
+		 * write the result to the output Pipe Fitting if the 
+		 * filter operation is successful.</P>
 		 * <P> 
 		 * The Filter Control PARAMS message type tells the Filter
 		 * to accept the body of the message as parameters. The
 		 * Filter only accepts the parameters if it is for this
 		 * specific filter.</P> 
 		 * <P>
-		 * The Queue Control Flush message type tells the Queue
-		 * to write all stored messages in FIFO order to the 
-		 * ouptut PipeFitting, then return to normal pass-thru
-		 * operation.</P> 
-		 */ 
-		/**
-		 * Filter the message and write to the output PipeFitting.
-		 * <P>
-		 * Returns true if the filter process does not 
-		 * throw an error and subsequent operations 
+		 * Returns true if the filter process does not throw an error and subsequent operations 
 		 * in the pipeline succede.</P>
 		 */
 		override public function write( message:IPipeMessage ):Boolean
 		{
 			var filtered:IPipeMessage;
 			var success:Boolean = true;
-			try {
-				filtered = filter( message );
-				success = output.write( filtered );
-			} catch (e:Error) {
-				success = false;
+			switch ( message.getType() )	
+			{
+				// Filter normal messages
+				case Message.TYPE_NORMAL:
+					try {
+						filtered = filter( message );
+						success = output.write( filtered );
+					} catch (e:Error) {
+						success = false;
+					}
+					break;
+				
+				// Accept parameters from control message 
+				case Message.TYPE_CONTROL && Filter.PARAMS:
+					if ( message.getHeader() as String == this.name ) {
+						success = setParams( message.getBody );
+					}
+					break;
 			}
+				
 			return success;			
 		}
 		

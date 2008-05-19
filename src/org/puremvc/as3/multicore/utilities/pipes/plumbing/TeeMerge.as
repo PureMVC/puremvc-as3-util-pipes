@@ -7,6 +7,12 @@ package org.puremvc.as3.multicore.utilities.pipes.plumbing
 {
 	import org.puremvc.as3.multicore.utilities.pipes.interfaces.IPipeFitting;
 	
+	/** 
+	 * Merging Pipe Tee.
+	 * <P>
+	 * Writes the messages from multiple input pipelines into
+	 * a single output pipe fitting.</P>
+	 */
 	public class TeeMerge extends Pipe
 	{
 		

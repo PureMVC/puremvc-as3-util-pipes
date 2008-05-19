@@ -8,6 +8,11 @@ package org.puremvc.as3.multicore.utilities.pipes.plumbing
 	import org.puremvc.as3.multicore.utilities.pipes.interfaces.IPipeFitting;
 	import org.puremvc.as3.multicore.utilities.pipes.interfaces.IPipeMessage;
 	
+	/** 
+	 * Splitting Pipe Tee.
+	 * <P>
+	 * Writes input messages to multiple output pipe fittings.</P>
+	 */
 	public class TeeSplit implements IPipeFitting
 	{
 		protected var outputs:Array = new Array();

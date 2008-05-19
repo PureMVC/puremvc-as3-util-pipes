@@ -6,7 +6,7 @@
 package org.puremvc.as3.multicore.utilities.pipes.interfaces
 {
 	/** 
-	 * The Pipe Fitting Interface.
+	 * Pipe Fitting Interface.
 	 * <P>
 	 * An <code>IPipeFitting</code> can be connected to other 
 	 * <code>IPipeFitting</code>s, forming a Pipeline. 

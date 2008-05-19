@@ -13,7 +13,7 @@ package org.puremvc.as3.multicore.utilities.pipes.plumbing
 	 * <P>
 	 * This is the most basic <code>IPipeFitting</code>,
 	 * simply allowing the connection of an output
-	 * fitting and writing of a message to that output.</P> 
+	 * fitting and writing of a message to that output.</P>
 	 */	
 	public class Pipe implements IPipeFitting
 	{
@@ -29,6 +29,8 @@ package org.puremvc.as3.multicore.utilities.pipes.plumbing
 		 * 
 		 * PipeFittings connect to and write to other 
 		 * PipeFittings in a one-way, syncrhonous chain.</P>
+		 * 
+		 * @return Boolean true if no other fitting was already connected.
 		 */
 		public function connect( output:IPipeFitting ) : Boolean
 		{

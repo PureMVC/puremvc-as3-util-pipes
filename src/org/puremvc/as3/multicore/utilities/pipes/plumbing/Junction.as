@@ -30,7 +30,7 @@ package org.puremvc.as3.multicore.utilities.pipes.plumbing
 		 * Pipes are registered by unique name and type,
 		 * which must be either <code>Junction.INPUT</code>
 		 * or <code>Junction.OUTPUT</code>.</P>
-v		 * <P>
+ 		 * <P>
 		 * NOTE: You cannot have an INPUT pipe and an OUTPUT
 		 * pipe registered with the same name. All pipe names
 		 * must be unique regardless of type.</P>
@@ -136,9 +136,9 @@ v		 * <P>
 		/**
 		 * Add a PipeListener to an INPUT pipe.
 		 * <P>
-		 * NOTE: there can only be one PipeListener per pipe.
-		 * and the listner function must accept an IPipeMessage
-		 * as its sole argument.</P>
+		 * NOTE: there can only be one PipeListener per pipe,
+		 * and the listener function must accept an IPipeMessage
+		 * as its sole argument.</P> 
 		 * 
 		 * @param name the INPUT pipe to add a PipeListener to
 		 * @param context the calling context or 'this' object  
