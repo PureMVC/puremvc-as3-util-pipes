@@ -36,7 +36,7 @@ package org.puremvc.as3.multicore.utilities.pipes.plumbing
 		 */
 		public function connectInput( input:IPipeFitting ):void
 		{
-			success = pipe.connect(this);
+			input.connect(this);
 		}
 		
 	}
