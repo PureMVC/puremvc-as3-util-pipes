@@ -15,7 +15,8 @@ package org.puremvc.as3.multicore.utilities.pipes.plumbing
 		 * <P>
 		 * Create the TeeMerge and the two optional constructor inputs.
 		 * This is the most common configuration, though you can connect
-		 * as many inputs as necessary by calling <code>connectInput</code>.</P>
+		 * as many inputs as necessary by calling <code>connectInput</code>
+		 * repeatedly.</P>
 		 * <P>
 		 * Connect the single output fitting normally by calling the 
 		 * <code>connect</code> method, as you would with any other IPipeFitting.</P>
