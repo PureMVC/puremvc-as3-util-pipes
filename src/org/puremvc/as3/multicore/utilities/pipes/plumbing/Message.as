@@ -43,7 +43,7 @@ package org.puremvc.as3.multicore.utilities.pipes.plumbing
 		protected var priority:int;
 
 		// Messages are handled differently according to type
-		protected var type:String;
+		protected var type:int;
 		
 		// Header properties describe any meta data about the message for the recipient
 		protected var header:Object;
@@ -52,7 +52,7 @@ package org.puremvc.as3.multicore.utilities.pipes.plumbing
 		protected var body:Object;
 
 		// Constructor
-		public function Message( type:String, header:Object, body:Object=null, priority:int=5 )
+		public function Message( type:int, header:Object, body:Object=null, priority:int=5 )
 		{
 			setType( type );
 			setHeader( header );
@@ -61,13 +61,13 @@ package org.puremvc.as3.multicore.utilities.pipes.plumbing
 		}
 		
 		// Get the type of this message
-		public function getType():String
+		public function getType():int
 		{
-			return type;
+			return this.type;
 		}
 		
 		// Set the type of this message
-		public function setType( type:String ):void
+		public function setType( type:int ):void
 		{
 			this.type = type;
 		}

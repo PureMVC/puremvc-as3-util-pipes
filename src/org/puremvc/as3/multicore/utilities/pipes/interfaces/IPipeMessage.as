@@ -18,10 +18,10 @@ package org.puremvc.as3.multicore.utilities.pipes.interfaces
 	public interface IPipeMessage
 	{
 		// Get the type of this message
-		function getType():String;
+		function getType():int;
 
 		// Set the type of this message
-		function setType(type:String):void;
+		function setType(type:int):void;
 		
 		// Get the priority of this message
 		function getPriority():int;

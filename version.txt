@@ -5,10 +5,16 @@ Your reuse is governed by the Creative Commons Attribution 3.0 License
 Release Date: 05/18/08
     Platform: ActionScript 3  
      Version: 0 
-    Revision: 1
+    Revision: 3
       Author:Cliff Hall <cliff.hall@puremvc.org>
      License: Creative Commons Attribution 3.0 United States License
 --------------------------------------------------------------------------
+0.3 - Exposed the PipeListener class, which was previously an 'inner class'
+      defined and used only inside Junction. It's useful for unit testing,
+      though, and for simple pipeline scenarios, you may not prefer to use
+      the Junction class and just set a listener on the end of the pipe
+      yourself. 
+
 0.2 - Checked in API Docs for the utility, updating a bunch of the inline
       code comments. Also, added the functionality for Filter instances
       to have instance names and to receive their parameters via control
