@@ -31,7 +31,7 @@ package org.puremvc.as3.multicore.utilities.pipes.plumbing
 		// Write the message to the listener
 		public function write(message:IPipeMessage):Boolean
 		{
-			listener.apply(context,message);
+			listener.apply(context,[message]);
 			return true;
 		}
 	}
