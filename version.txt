@@ -5,10 +5,12 @@ Your reuse is governed by the Creative Commons Attribution 3.0 License
 Release Date: 05/18/08
     Platform: ActionScript 3  
      Version: 0 
-    Revision: 4
+    Revision: 5
       Author:Cliff Hall <cliff.hall@puremvc.org>
      License: Creative Commons Attribution 3.0 United States License
 --------------------------------------------------------------------------
+0.5 - TeeMerge: Return Boolean from connectInput.
+
 0.4 - PipeListener: fixed 'apply parameter must be an array'.
 
 0.3 - Exposed the PipeListener class, which was previously an 'inner class'

@@ -41,9 +41,9 @@ package org.puremvc.as3.multicore.utilities.pipes.plumbing
 		 * 
 		 * @param input the IPipeFitting to connect for input.
 		 */
-		public function connectInput( input:IPipeFitting ):void
+		public function connectInput( input:IPipeFitting ):Boolean
 		{
-			input.connect(this);
+			return input.connect(this);
 		}
 		
 	}
