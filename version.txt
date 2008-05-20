@@ -5,10 +5,12 @@ Your reuse is governed by the Creative Commons Attribution 3.0 License
 Release Date: 05/18/08
     Platform: ActionScript 3  
      Version: 0 
-    Revision: 3
+    Revision: 4
       Author:Cliff Hall <cliff.hall@puremvc.org>
      License: Creative Commons Attribution 3.0 United States License
 --------------------------------------------------------------------------
+0.4 - PipeListener apply parameter must be an array.
+
 0.3 - Exposed the PipeListener class, which was previously an 'inner class'
       defined and used only inside Junction. It's useful for unit testing,
       though, and for simple pipeline scenarios, you may not prefer to use
