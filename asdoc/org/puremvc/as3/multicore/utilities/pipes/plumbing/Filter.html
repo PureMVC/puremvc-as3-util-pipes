@@ -333,10 +333,11 @@ showHideInherited();
    write the result to the output Pipe Fitting if the 
    filter operation is successful.</P>
    <P> 
-   The Filter Control PARAMS message type tells the Filter
+   The Filter Control Parameters message type tells the Filter
    to accept the body of the message as parameters. The
    Filter only accepts the parameters if it is for this
-   specific filter.</P> 
+   specific filter. Send an <code>IPipeMessage</code> of type:
+   <code>Filter.PARAMS</code></P>
    <P>
    Returns true if the filter process does not throw an error and subsequent operations 
    in the pipeline succede.</P>
