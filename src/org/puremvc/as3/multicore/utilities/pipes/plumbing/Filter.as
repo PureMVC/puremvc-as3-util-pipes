@@ -37,10 +37,11 @@ package org.puremvc.as3.multicore.utilities.pipes.plumbing
 		 * write the result to the output Pipe Fitting if the 
 		 * filter operation is successful.</P>
 		 * <P> 
-		 * The Filter Control PARAMS message type tells the Filter
+		 * The Filter Control Parameters message type tells the Filter
 		 * to accept the body of the message as parameters. The
 		 * Filter only accepts the parameters if it is for this
-		 * specific filter.</P> 
+		 * specific filter. Send an <code>IPipeMessage</code> of type:
+		 * <code>Filter.PARAMS</code></P>
 		 * <P>
 		 * Returns true if the filter process does not throw an error and subsequent operations 
 		 * in the pipeline succede.</P>
@@ -52,7 +53,7 @@ package org.puremvc.as3.multicore.utilities.pipes.plumbing
 			switch ( message.getType() )	
 			{
 				// Filter normal messages
-				case Message.TYPE_NORMAL:
+				case Message.NORMAL:
 					try {
 						filtered = filter( message );
 						success = output.write( filtered );
@@ -62,7 +63,7 @@ package org.puremvc.as3.multicore.utilities.pipes.plumbing
 					break;
 				
 				// Accept parameters from control message 
-				case Message.TYPE_CONTROL && Filter.PARAMS:
+				case Filter.PARAMS:
 					if ( message.getHeader() as String == this.name ) {
 						success = setParams( message.getBody );
 					}

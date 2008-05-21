@@ -25,21 +25,12 @@ package org.puremvc.as3.multicore.utilities.pipes.plumbing
 		// Low priority Messages are sorted to the back of the queue 
 		public static const PRIORITY_LOW:int = 10;
 		
-		// Normal messages are written thru, filtered or queued
-		public static const TYPE_NORMAL:int = 0;
-		
 		/**
-		 * Message type for pipeline control.
-		 * <P>
-		 * Control messages are acted upon by fittings that make up the pipeline.
-		 * <P>
-		 * Note TYPE_CONTROL must be logical ANDed (&&) with the control constant 
-		 * from the fitting itself, i.e.: 
-		 * <code>setType(Message.TYPE_CONTROL && Queue.FLUSH)</code></P>
+		 * Normal Message type.
 		 */
-		public static const TYPE_CONTROL:int = 64; 
+		public static const NORMAL:int = 0;
 		
-		// Messages in a queue can be sorted by priority.
+		// TBD: Messages in a queue can be sorted by priority.
 		protected var priority:int;
 
 		// Messages are handled differently according to type
