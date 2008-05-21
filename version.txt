@@ -5,7 +5,7 @@ Your reuse is governed by the Creative Commons Attribution 3.0 License
 Release Date: 05/18/08
     Platform: ActionScript 3  
      Version: 0 
-    Revision: 5
+    Revision: 6
       Author:Cliff Hall <cliff.hall@puremvc.org>
      License: Creative Commons Attribution 3.0 United States License
 --------------------------------------------------------------------------
