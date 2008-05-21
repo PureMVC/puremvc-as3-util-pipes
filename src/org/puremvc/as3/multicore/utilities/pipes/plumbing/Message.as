@@ -52,7 +52,7 @@ package org.puremvc.as3.multicore.utilities.pipes.plumbing
 		protected var body:Object;
 
 		// Constructor
-		public function Message( type:int, header:Object, body:Object=null, priority:int=5 )
+		public function Message( type:int, header:Object=null, body:Object=null, priority:int=5 )
 		{
 			setType( type );
 			setHeader( header );
