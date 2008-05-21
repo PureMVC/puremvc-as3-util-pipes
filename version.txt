@@ -5,10 +5,17 @@ Your reuse is governed by the Creative Commons Attribution 3.0 License
 Release Date: 05/18/08
     Platform: ActionScript 3  
      Version: 0 
-    Revision: 6
+    Revision: 7
       Author:Cliff Hall <cliff.hall@puremvc.org>
      License: Creative Commons Attribution 3.0 United States License
 --------------------------------------------------------------------------
+0.7 - Message: refactored out of pipes/plumbing into pipes/messages folder. 
+      Added QueueControlMessage and FilterControlMessage, subclasses of Message
+      that simplify creation of control Messages, and show how to create
+      your own subclass of message for custom purposes. They expose constants
+      for type names and use an internal URI scheme to manage message
+      namespace. 
+      
 0.6 - Message: Allow null header. Queue control flush messages only require
       a type, so thats the minimum requirement. Queue, Message, Filter: 
       Message.TYPE_NORMAL becomes Message.NORMAL and Message.TYPE_CONTROL 

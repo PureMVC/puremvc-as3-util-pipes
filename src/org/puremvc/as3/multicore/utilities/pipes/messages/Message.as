@@ -3,7 +3,7 @@
  Copyright (c) 2008 Cliff Hall<cliff.hall@puremvc.org>
  Your reuse is governed by the Creative Commons Attribution 3.0 License
  */
-package org.puremvc.as3.multicore.utilities.pipes.plumbing
+package org.puremvc.as3.multicore.utilities.pipes.messages
 {
 	import org.puremvc.as3.multicore.utilities.pipes.interfaces.IPipeMessage;
 	/**
@@ -12,29 +12,31 @@ package org.puremvc.as3.multicore.utilities.pipes.plumbing
 	 * Messages travelling through a Pipeline can
 	 * be filtered, and queued. In a queue, they may
 	 * be sorted by priority. Based on type, they 
-	 * may written thru or acted upon by any pipline 
-	 * element.</P>
+	 * may used as control messages to modify the
+	 * behavior of filter or queue fittings connected
+	 * to the pipleline into which they are written.</P>
 	 */ 
 	public class Message implements IPipeMessage
 	{
 
-		// High priority Messages are sorted to the front of the queue 
+		// High priority Messages can be sorted to the front of the queue 
 		public static const PRIORITY_HIGH:int = 1;
-		// Medium priority Messages order vanilla shakes and medium fries
+		// Medium priority Messages are the default
 		public static const PRIORITY_MED:int = 5;
-		// Low priority Messages are sorted to the back of the queue 
+		// Low priority Messages can be sorted to the back of the queue 
 		public static const PRIORITY_LOW:int = 10;
 		
 		/**
 		 * Normal Message type.
 		 */
-		public static const NORMAL:int = 0;
+		protected static const BASE:String = 'http://puremvc.org/namespaces/pipes/messages/';
+		public static const NORMAL:String = BASE+'normal/';
 		
 		// TBD: Messages in a queue can be sorted by priority.
 		protected var priority:int;
 
-		// Messages are handled differently according to type
-		protected var type:int;
+		// Messages can be handled differently according to type
+		protected var type:String;
 		
 		// Header properties describe any meta data about the message for the recipient
 		protected var header:Object;
@@ -43,7 +45,7 @@ package org.puremvc.as3.multicore.utilities.pipes.plumbing
 		protected var body:Object;
 
 		// Constructor
-		public function Message( type:int, header:Object=null, body:Object=null, priority:int=5 )
+		public function Message( type:String, header:Object=null, body:Object=null, priority:int=5 )
 		{
 			setType( type );
 			setHeader( header );
@@ -52,13 +54,13 @@ package org.puremvc.as3.multicore.utilities.pipes.plumbing
 		}
 		
 		// Get the type of this message
-		public function getType():int
+		public function getType():String
 		{
 			return this.type;
 		}
 		
 		// Set the type of this message
-		public function setType( type:int ):void
+		public function setType( type:String ):void
 		{
 			this.type = type;
 		}

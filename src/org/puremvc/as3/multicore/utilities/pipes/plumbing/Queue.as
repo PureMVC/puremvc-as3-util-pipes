@@ -7,6 +7,8 @@ package org.puremvc.as3.multicore.utilities.pipes.plumbing
 {
 	import org.puremvc.as3.multicore.utilities.pipes.interfaces.IPipeFitting;
 	import org.puremvc.as3.multicore.utilities.pipes.interfaces.IPipeMessage;
+	import org.puremvc.as3.multicore.utilities.pipes.messages.Message;
+	import org.puremvc.as3.multicore.utilities.pipes.messages.QueueControlMessage;
 	
 	/** 
 	 * Pipe Queue.
@@ -25,8 +27,6 @@ package org.puremvc.as3.multicore.utilities.pipes.plumbing
 	 */
 	public class Queue extends Pipe
 	{
-		public static const FLUSH:int = 1;
-
 		public function Queue( output:IPipeFitting=null )
 		{
 			super( output );
@@ -37,10 +37,15 @@ package org.puremvc.as3.multicore.utilities.pipes.plumbing
 		 * <P>
 		 * Normal messages are enqueued.</P>
 		 * <P>
-		 * The Queue Flush message type tells the Queue
-		 * to write all stored messages in FIFO order to the 
-		 * ouptut PipeFitting, then return to normal enqueing
-		 * operation.</P> 
+		 * The FLUSH message type tells the Queue to write all 
+		 * stored messages to the ouptut PipeFitting, then 
+		 * return to normal enqueing operation.</P>
+		 * <P>
+		 * The SORT message type tells the Queue to sort all 
+		 * subsequent incoming messages by priority. This 
+		 * behavior continues even after a FLUSH, and can be
+		 * turned off by the FIFO message, which is the default
+		 * behavior for enqueue/dequeue.</P> 
 		 */ 
 		override public function write( message:IPipeMessage ):Boolean
 		{
@@ -53,8 +58,17 @@ package org.puremvc.as3.multicore.utilities.pipes.plumbing
 					break;
 					
 				// Flush the queue
-				case Queue.FLUSH:
+				case QueueControlMessage.FLUSH:
 					success = this.flush();		
+					break;
+
+				// Put Queue into Priority Sort or FIFO mode 
+				// Subsequent messages written to the queue
+				// will be affected. Sorted messages cannot
+				// be put back into FIFO order!
+				case QueueControlMessage.SORT:
+				case QueueControlMessage.FIFO:
+					mode = message.getType();
 					break;
 			}
 			return success;
@@ -70,6 +84,15 @@ package org.puremvc.as3.multicore.utilities.pipes.plumbing
 			messages.push( message );
 		}
 
+
+		/**
+		 * Sort the Messages by priority.
+		 */
+		protected function sortMessagesByPriority():void
+		{
+			//TBD: Sort the messages by priority.	
+		}
+		
 		/**
 		 * Flush the queue.
 		 * <P>
@@ -89,6 +112,7 @@ package org.puremvc.as3.multicore.utilities.pipes.plumbing
 			return success;
 		}
 
+		protected var mode:String = QueueControlMessage.SORT;
 		protected var messages:Array = new Array();
 	}
 }

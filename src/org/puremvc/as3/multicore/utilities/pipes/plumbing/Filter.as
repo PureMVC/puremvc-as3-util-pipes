@@ -7,6 +7,8 @@ package org.puremvc.as3.multicore.utilities.pipes.plumbing
 {
 	import org.puremvc.as3.multicore.utilities.pipes.interfaces.IPipeFitting;
 	import org.puremvc.as3.multicore.utilities.pipes.interfaces.IPipeMessage;
+	import org.puremvc.as3.multicore.utilities.pipes.messages.FilterControlMessage;
+	import org.puremvc.as3.multicore.utilities.pipes.messages.Message;
 	
 	/**
 	 * Pipe Filter.
@@ -63,7 +65,7 @@ package org.puremvc.as3.multicore.utilities.pipes.plumbing
 					break;
 				
 				// Accept parameters from control message 
-				case Filter.PARAMS:
+				case FilterControlMessage.PARAMS:
 					if ( message.getHeader() as String == this.name ) {
 						success = setParams( message.getBody );
 					}
