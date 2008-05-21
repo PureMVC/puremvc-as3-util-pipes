@@ -5,7 +5,7 @@
  */
 package org.puremvc.as3.multicore.utilities.pipes.messages
 {
-	import org.puremvc.as3.multicore.utilities.pipes.plumbing.Filter;
+	
 	/**
 	 * Filter Control Message.
 	 * <P>
