@@ -14,9 +14,9 @@ package org.puremvc.as3.multicore.utilities.pipes.plumbing
 	 * Pipe Filter.
 	 * <P>
 	 * Filters may modify the contents of messages before writing them to 
-	 * their output PipeFitting. They may also have their parameters and
+	 * their output pipe fitting. They may also have their parameters and
 	 * filter function passed to them by control message, as well as having
-	 * their Bypass/Filter operation mode toggled.</O>  
+	 * their Bypass/Filter operation mode toggled via control message.</p>  
 	 */ 
 	public class Filter extends Pipe
 	{
@@ -37,9 +37,10 @@ package org.puremvc.as3.multicore.utilities.pipes.plumbing
 		/**
 		 * Handle the incoming message.
 		 * <P>
-		 * If message type is normal, filter the message and 
-		 * write the result to the output Pipe Fitting if the 
-		 * filter operation is successful.</P>
+		 * If message type is normal, filter the message (unless in BYPASS mode)
+		 * and write the result to the output pipe fitting if the filter 
+		 * operation is successful.</P>
+		 * 
 		 * <P> 
 		 * The FilterControlMessage.SET_PARAMS message type tells the Filter
 		 * that the message class is FilterControlMessage, which it 
@@ -82,7 +83,7 @@ package org.puremvc.as3.multicore.utilities.pipes.plumbing
 				case  Message.NORMAL: 	
 					try {
 						if ( mode == FilterControlMessage.FILTER ) {
-							outputMessage = filter( message );
+							outputMessage = applyFilter( message );
 						} else {
 							outputMessage = message;
 						}
@@ -135,6 +136,7 @@ package org.puremvc.as3.multicore.utilities.pipes.plumbing
 		{
 			return ( FilterControlMessage(m).getName() == this.name );
 		}
+		
 		/**
 		 * Set the Filter parameters.
 		 * <P>
@@ -152,10 +154,10 @@ package org.puremvc.as3.multicore.utilities.pipes.plumbing
 		/**
 		 * Set the Filter function.
 		 * <P>
-		 * It will be run in the context of this Filter instance
-		 * and will therefore have access to the <code>params</code>
-		 * object, which can contain whatever arbitrary 
-		 * properties and values your filter method requires.</P>
+		 * It must accept two arguments; an IPipeMessage, 
+		 * and a parameter Object, which can contain whatever 
+		 * arbitrary properties and values your filter method 
+		 * requires.</P>
 		 * 
 		 * @param filter the filter function. 
 		 */
@@ -166,28 +168,16 @@ package org.puremvc.as3.multicore.utilities.pipes.plumbing
 		
 		/**
 		 * Filter the message.
-		 * <P>
-		 * <I>Pass in the method to !</I>
-		 * <B>Don't call super!</B> Instead process the message and
-		 * return your filtered result.</P>
-		 * <P>
-		 * If your filter method detects an invalid or unauthorized
-		 * input message, <B>it should throw an error.</B> This will result
-		 * in false being returned to the ultimate writer client of 
-		 * the pipeline this filter is a part of. This allows a
-		 * pipleline to be transactional, and for the client  
-		 * to perform rollback operations if the message is unsuccessfully
-		 * written to the pipe.</P>     
 		 */
 		protected function applyFilter( message:IPipeMessage ):IPipeMessage
 		{
-			filter.apply( this, [ message ] );
+			filter.apply( this, [ message, params ] );
 			return message;
 		}
 		
-		protected var mode:String;
-		protected var filter:Function;
-		protected var params:Object;
+		protected var mode:String = FilterControlMessage.FILTER;
+		protected var filter:Function = function(message:IPipeMessage, params:Object):void{return;};
+		protected var params:Object = {};
 		protected var name:String;
 
 	}

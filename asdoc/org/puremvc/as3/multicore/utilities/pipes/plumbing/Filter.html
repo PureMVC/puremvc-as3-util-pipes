@@ -45,9 +45,9 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
   Pipe Filter.
   <P>
   Filters may modify the contents of messages before writing them to 
-  their output PipeFitting. They may also have their parameters and
+  their output pipe fitting. They may also have their parameters and
   filter function passed to them by control message, as well as having
-  their Bypass/Filter operation mode toggled.</O>  
+  their Bypass/Filter operation mode toggled via control message.</p>  
   <p></p>
 <br>
 <hr>
@@ -266,18 +266,6 @@ showHideInherited();
 <div class="detailBody">
 <code>protected function applyFilter(message:<a href="../interfaces/IPipeMessage.html">IPipeMessage</a>):<a href="../interfaces/IPipeMessage.html">IPipeMessage</a></code><p>
    Filter the message.
-   <P>
-   <I>Pass in the method to !</I>
-   <B>Don't call super!</B> Instead process the message and
-   return your filtered result.</P>
-   <P>
-   If your filter method detects an invalid or unauthorized
-   input message, <B>it should throw an error.</B> This will result
-   in false being returned to the ultimate writer client of 
-   the pipeline this filter is a part of. This allows a
-   pipleline to be transactional, and for the client  
-   to perform rollback operations if the message is unsuccessfully
-   written to the pipe.</P>     
    </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
@@ -325,10 +313,10 @@ showHideInherited();
 <code>public function setFilter(filter:Function):void</code><p>
    Set the Filter function.
    <P>
-   It will be run in the context of this Filter instance
-   and will therefore have access to the <code>params</code>
-   object, which can contain whatever arbitrary 
-   properties and values your filter method requires.</P>
+   It must accept two arguments; an IPipeMessage, 
+   and a parameter Object, which can contain whatever 
+   arbitrary properties and values your filter method 
+   requires.</P>
    
    </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
@@ -370,9 +358,10 @@ showHideInherited();
 <code>public override function write(message:<a href="../interfaces/IPipeMessage.html">IPipeMessage</a>):Boolean</code><p>
    Handle the incoming message.
    <P>
-   If message type is normal, filter the message and 
-   write the result to the output Pipe Fitting if the 
-   filter operation is successful.</P>
+   If message type is normal, filter the message (unless in BYPASS mode)
+   and write the result to the output pipe fitting if the filter 
+   operation is successful.</P>
+   
    <P> 
    The FilterControlMessage.SET_PARAMS message type tells the Filter
    that the message class is FilterControlMessage, which it 

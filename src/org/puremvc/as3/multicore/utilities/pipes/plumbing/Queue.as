@@ -14,16 +14,18 @@ package org.puremvc.as3.multicore.utilities.pipes.plumbing
 	 * Pipe Queue.
 	 * <P>
 	 * The Queue always stores inbound messages until you send it
-	 * a Queue Flush message, at which point it writes the
-	 * queue out in FIFO order.</P>
-	 * <P>
-	 * To tell the Queue to flush the queue to the output 
-	 * PipeFitting in FIFO order, send an <code>IPipeMessage</code> of type:
-	 * <code>Queue.FLUSH</code></P>
+	 * a FLUSH control message, at which point it writes its buffer 
+	 * to the output pipe fitting. The Queue can be sent a SORT 
+	 * control message to go into sort-by-priority mode or a FIFO 
+	 * control message to cancel sort mode and return the
+	 * default mode of operation, FIFO.</P>
+	 * 
 	 * <P>
 	 * NOTE: There can effectively be only one Queue on a given 
-	 * pipeline, since the first queue in the pipeline acts on 
-	 * any Queue Control Flush message.</P> 
+	 * pipeline, since the first Queue acts on any queue control 
+	 * message. Multiple queues in one pipeline are of dubious 
+	 * use, and so having to name them would make their operation 
+	 * more complex than need be.</P> 
 	 */
 	public class Queue extends Pipe
 	{
