@@ -16,8 +16,8 @@ Release Date: 05/21/08
       for custom purposes. They expose constants for type names and use an 
       internal URI scheme to manage message namespace. Filter and Queue: 
       modified to use new control message names. Queue: Added support for 
-      toggling sort-by-priority/fifo behavior.
-      
+      toggling sort-by-priority/fifo behavior. FilterControlMessage has its
+      own getters and setters for name, filter and params properties. 
       
 0.6 - Message: Allow null header. Queue control flush messages only require
       a type, so thats the minimum requirement. Queue, Message, Filter: 
