@@ -4,9 +4,9 @@ package org.puremvc.as3.multicore.utilities.pipes.plumbing
 	import org.puremvc.as3.multicore.utilities.pipes.interfaces.IPipeMessage;
 		
 	/**
-	 * A Pipe Listener.
+	 * Pipe Listener.
 	 * <P>
-	 * This allows a class that does not implement IPipeFitting to
+	 * Allows a class that does not implement <code>IPipeFitting</code> to
 	 * be the final recipient of the messages in a pipeline.</P>
 	 * 
 	 * @see Junction
