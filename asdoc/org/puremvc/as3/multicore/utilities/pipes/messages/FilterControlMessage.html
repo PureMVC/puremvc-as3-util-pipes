@@ -44,15 +44,31 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <p></p>
   Filter Control Message.
   <P>
-  A special message for controlling the behavior of a Filter.</P>
+  A special message type for controlling the behavior of a Filter.</P>
+  <P> 
+  The <code>FilterControlMessage.SET_PARAMS</code> message type tells the Filter
+  to retrieve the filter parameters object.</P> 
+  
+  <P> 
+  The <code>FilterControlMessage.SET_FILTER</code> message type tells the Filter
+  to retrieve the filter function.</P>
+  
+  <P> 
+  The <code>FilterControlMessage.BYPASS</code> message type tells the Filter
+  that it should go into Bypass mode operation, passing all normal
+  messages through unfiltered.</P>
+  
   <P>
-  When written to a pipeline containing a Filter, the type
-  of the message is interpreted and acted upon by the Filter, 
-  but only if the header property is the name of the filter
-  instance. This allows multiple filters to be connected to the
-  same pipeline and have control messages directed to them by 
-  name.  
-  </P>
+  The <code>FilterControlMessage.FILTER</code> message type tells the Filter
+  that it should go into Filtering mode operation, filtering all
+  normal normal messages before writing out. This is the default
+  mode of operation and so this message type need only be sent to
+  cancel a previous  <code>FilterControlMessage.BYPASS</code> message.</P>
+  
+  <P>
+  The Filter only acts on a control message if it is targeted 
+  to this named filter instance. Otherwise it writes the message
+  through to its output unchanged.</P>
   <p></p>
 <br>
 <hr>
@@ -247,12 +263,12 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#BYPASS">BYPASS</a> : String<div class="summaryTableDescription">[static]
-   Toggle to filter bypass mode message type.</div>
+   Toggle to filter bypass mode.</div>
 </td><td class="summaryTableOwnerCol">FilterControlMessage</td>
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#FILTER">FILTER</a> : String<div class="summaryTableDescription">[static]
-   Toggle to filtering mode  message type.</div>
+   Toggle to filtering mode.</div>
 </td><td class="summaryTableOwnerCol">FilterControlMessage</td>
 </tr>
 <tr class="hideInheritedConstant">
@@ -273,12 +289,12 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#SET_FILTER">SET_FILTER</a> : String<div class="summaryTableDescription">[static]
-   Set filter method message type.</div>
+   Set filter function.</div>
 </td><td class="summaryTableOwnerCol">FilterControlMessage</td>
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#SET_PARAMS">SET_PARAMS</a> : String<div class="summaryTableDescription">[static]
-   Set filter parameters message type.</div>
+   Set filter parameters.</div>
 </td><td class="summaryTableOwnerCol">FilterControlMessage</td>
 </tr>
 </table>
@@ -487,7 +503,7 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public static const BYPASS:String</code><p>
-   Toggle to filter bypass mode message type.
+   Toggle to filter bypass mode.
    </p></div>
 <a name="FILTER"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
@@ -497,7 +513,7 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public static const FILTER:String</code><p>
-   Toggle to filtering mode  message type. (default behavior).
+   Toggle to filtering mode. (default behavior).
    </p></div>
 <a name="SET_FILTER"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
@@ -507,7 +523,7 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public static const SET_FILTER:String</code><p>
-   Set filter method message type.
+   Set filter function.
    </p></div>
 <a name="SET_PARAMS"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
@@ -517,7 +533,7 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public static const SET_PARAMS:String</code><p>
-   Set filter parameters message type.
+   Set filter parameters.
    </p></div>
 <br>
 <br>

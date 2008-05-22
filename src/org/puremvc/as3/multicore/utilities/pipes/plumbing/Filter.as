@@ -13,8 +13,10 @@ package org.puremvc.as3.multicore.utilities.pipes.plumbing
 	/**
 	 * Pipe Filter.
 	 * <P>
-	 * Filters may modify the contents of messages before writing
-	 * them to their output PipeFitting.  
+	 * Filters may modify the contents of messages before writing them to 
+	 * their output PipeFitting. They may also have their parameters and
+	 * filter function passed to them by control message, as well as having
+	 * their Bypass/Filter operation mode toggled.</O>  
 	 */ 
 	public class Filter extends Pipe
 	{
@@ -64,7 +66,7 @@ package org.puremvc.as3.multicore.utilities.pipes.plumbing
 		 * <P>
 		 * The Filter only acts on the control message if it is targeted 
 		 * to this named filter instance. Otherwise it writes through to the
-		 * output.
+		 * output.</P>
 		 * 
 		 * @return Boolean True if the filter process does not throw an error and subsequent operations 
 		 * in the pipeline succede.

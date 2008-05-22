@@ -44,8 +44,10 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <p></p>
   Pipe Filter.
   <P>
-  Filters may modify the contents of messages before writing
-  them to their output PipeFitting.  
+  Filters may modify the contents of messages before writing them to 
+  their output PipeFitting. They may also have their parameters and
+  filter function passed to them by control message, as well as having
+  their Bypass/Filter operation mode toggled.</O>  
   <p></p>
 <br>
 <hr>
@@ -397,7 +399,7 @@ showHideInherited();
    <P>
    The Filter only acts on the control message if it is targeted 
    to this named filter instance. Otherwise it writes through to the
-   output.
+   output.</P>
    
    </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">

@@ -9,15 +9,31 @@ package org.puremvc.as3.multicore.utilities.pipes.messages
 	/**
 	 * Filter Control Message.
 	 * <P>
-	 * A special message for controlling the behavior of a Filter.</P>
+	 * A special message type for controlling the behavior of a Filter.</P>
+	 * <P> 
+	 * The <code>FilterControlMessage.SET_PARAMS</code> message type tells the Filter
+	 * to retrieve the filter parameters object.</P> 
+	 * 
+	 * <P> 
+	 * The <code>FilterControlMessage.SET_FILTER</code> message type tells the Filter
+	 * to retrieve the filter function.</P>
+	 * 
+	 * <P> 
+	 * The <code>FilterControlMessage.BYPASS</code> message type tells the Filter
+	 * that it should go into Bypass mode operation, passing all normal
+	 * messages through unfiltered.</P>
+	 * 
 	 * <P>
-	 * When written to a pipeline containing a Filter, the type
-	 * of the message is interpreted and acted upon by the Filter, 
-	 * but only if the header property is the name of the filter
-	 * instance. This allows multiple filters to be connected to the
-	 * same pipeline and have control messages directed to them by 
-	 * name.  
-	 * </P>
+	 * The <code>FilterControlMessage.FILTER</code> message type tells the Filter
+	 * that it should go into Filtering mode operation, filtering all
+	 * normal normal messages before writing out. This is the default
+	 * mode of operation and so this message type need only be sent to
+	 * cancel a previous  <code>FilterControlMessage.BYPASS</code> message.</P>
+	 * 
+	 * <P>
+	 * The Filter only acts on a control message if it is targeted 
+	 * to this named filter instance. Otherwise it writes the message
+	 * through to its output unchanged.</P>
 	 */ 
 	public class FilterControlMessage extends Message
 	{
@@ -27,22 +43,22 @@ package org.puremvc.as3.multicore.utilities.pipes.messages
 		protected static const BASE:String  = Message.BASE+'/filter/';
 		
 		/**
-		 * Set filter parameters message type.
+		 * Set filter parameters.
 		 */ 
 		public static const SET_PARAMS:String 	= BASE+'setparams';
 		
 		/**
-		 * Set filter method message type.
+		 * Set filter function.
 		 */ 
 		public static const SET_FILTER:String 	= BASE+'setfilter';
 
 		/**
-		 * Toggle to filter bypass mode message type.
+		 * Toggle to filter bypass mode.
 		 */
 		public static const BYPASS:String 		= BASE+'bypass';
 		
 		/**
-		 * Toggle to filtering mode  message type. (default behavior).
+		 * Toggle to filtering mode. (default behavior).
 		 */
 		public static const FILTER:String  		= BASE+'filter';
 
