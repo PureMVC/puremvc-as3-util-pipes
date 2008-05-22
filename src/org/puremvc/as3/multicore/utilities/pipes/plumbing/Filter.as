@@ -18,18 +18,18 @@ package org.puremvc.as3.multicore.utilities.pipes.plumbing
 	 */ 
 	public class Filter extends Pipe
 	{
-		public static const PARAMS:int = 2;
 		
 		/**
 		 * Constructor.
 		 * <P>
 		 * Optionally connect the output and set the parameters.</P>
 		 */
-		public function Filter( name:String, output:IPipeFitting=null, params:Object=null ) 
+		public function Filter( name:String, output:IPipeFitting=null, filter:Function=null, params:Object=null ) 
 		{
 			super( output );
 			this.name = name;
-			if ( params ) setParams( params );
+			if ( filter != null ) setFilter( filter );
+			if ( params != null ) setParams( params );
 		}
 
 		/**
@@ -39,80 +39,133 @@ package org.puremvc.as3.multicore.utilities.pipes.plumbing
 		 * write the result to the output Pipe Fitting if the 
 		 * filter operation is successful.</P>
 		 * <P> 
-		 * The Filter Control Parameters message type tells the Filter
-		 * to accept the body of the message as parameters. The
-		 * Filter only accepts the parameters if it is for this
-		 * specific filter. Send an <code>IPipeMessage</code> of type:
-		 * <code>Filter.PARAMS</code></P>
+		 * The FilterControlMessage.SET_PARAMS message type tells the Filter
+		 * that the message class is FilterControlMessage, which it 
+		 * casts the message to in order to retrieve the filter parameters
+		 * object if the message is addressed to this filter.</P> 
+		 * 
+		 * <P> 
+		 * The FilterControlMessage.SET_FILTER message type tells the Filter
+		 * that the message class is FilterControlMessage, which it 
+		 * casts the message to in order to retrieve the filter function.</P>
+		 * 
+		 * <P> 
+		 * The FilterControlMessage.BYPASS message type tells the Filter
+		 * that it should go into Bypass mode operation, passing all normal
+		 * messages through unfiltered.</P>
+		 * 
 		 * <P>
-		 * Returns true if the filter process does not throw an error and subsequent operations 
-		 * in the pipeline succede.</P>
+		 * The FilterControlMessage.FILTER message type tells the Filter
+		 * that it should go into Filtering mode operation, filtering all
+		 * normal normal messages before writing out. This is the default
+		 * mode of operation and so this message type need only be sent to
+		 * cancel a previous BYPASS message.</P>
+		 * 
+		 * <P>
+		 * The Filter only acts on the control message if it is targeted 
+		 * to this named filter instance. Otherwise it writes through to the
+		 * output.
+		 * 
+		 * @return Boolean True if the filter process does not throw an error and subsequent operations 
+		 * in the pipeline succede.
 		 */
 		override public function write( message:IPipeMessage ):Boolean
 		{
-			var filtered:IPipeMessage;
+			var outputMessage:IPipeMessage;
 			var success:Boolean = true;
-			switch ( message.getType() )	
+
+			// Filter normal messages
+			switch ( message.getType())
 			{
-				// Filter normal messages
-				case Message.NORMAL:
+				case  Message.NORMAL: 	
 					try {
-						filtered = filter( message );
-						success = output.write( filtered );
+						if ( mode == FilterControlMessage.FILTER ) {
+							outputMessage = filter( message );
+						} else {
+							outputMessage = message;
+						}
+						success = output.write( outputMessage );
 					} catch (e:Error) {
 						success = false;
 					}
 					break;
 				
 				// Accept parameters from control message 
-				case FilterControlMessage.PARAMS:
-					if ( message.getHeader() as String == this.name ) {
-						success = setParams( message.getBody );
+				case FilterControlMessage.SET_PARAMS:
+					if (isTarget(message)) 					{
+						setParams( FilterControlMessage(message).getParams() );
+					} else {
+						success = output.write( outputMessage );
 					}
 					break;
-			}
+
+				// Accept filter function from control message 
+				case FilterControlMessage.SET_FILTER:
+					if (isTarget(message)){
+						setFilter( FilterControlMessage(message).getFilter() );
+					} else {
+						success = output.write( outputMessage );
+					}
+					
+					break;
+
+				// Toggle between Filter or Bypass operational modes
+				case FilterControlMessage.BYPASS:
+				case FilterControlMessage.FILTER:
+					if (isTarget(message)){
+						mode = FilterControlMessage(message).getType();
+					} else {
+						success = output.write( outputMessage );
+					}
+					break;
 				
+				// Write control messages for other fittings through
+				default:	
+					success = output.write( outputMessage );
+			}
 			return success;			
 		}
 		
 		/**
-		 * Set the Filter parameters.
-		 * 
-		 * @param params the parameters object
-		 * @return Boolean true if the parameters were valid and set.
+		 * Is the message directed at this filter instance?
 		 */
-		public function setParams( params:Object ):Boolean
+		protected function isTarget(m:IPipeMessage):Boolean
 		{
-			var success:Boolean = true;
-			if ( validateParams( params ) ) 
-			{
-				this.params = params;
-			} else {
-				success = false;
-			}
-			return success;
+			return ( FilterControlMessage(m).getName() == this.name );
 		}
-		
 		/**
-		 * Validate the Filter parameters.
+		 * Set the Filter parameters.
 		 * <P>
-		 * Override this method in your subclass
-		 * and use it to ensure the parameters
-		 * on the object passed in are valid for 
-		 * use with your filter operation.</P>
+		 * This can be an object can contain whatever arbitrary 
+		 * properties and values your filter method requires to
+		 * operate.</P>
 		 * 
 		 * @param params the parameters object
-		 * @return Boolean true if the parameters were valid and set.
 		 */
-		protected function validateParams( params:Object ):Boolean
+		public function setParams( params:Object ):void
 		{
-			return true;
+			this.params = params;
+		}
+
+		/**
+		 * Set the Filter function.
+		 * <P>
+		 * It will be run in the context of this Filter instance
+		 * and will therefore have access to the <code>params</code>
+		 * object, which can contain whatever arbitrary 
+		 * properties and values your filter method requires.</P>
+		 * 
+		 * @param filter the filter function. 
+		 */
+		public function setFilter( filter:Function ):void
+		{
+			this.filter = filter;
 		}
 		
 		/**
 		 * Filter the message.
 		 * <P>
-		 * <I>Override in subclass to add the filter functionality!</I>
+		 * <I>Pass in the method to !</I>
 		 * <B>Don't call super!</B> Instead process the message and
 		 * return your filtered result.</P>
 		 * <P>
@@ -124,11 +177,14 @@ package org.puremvc.as3.multicore.utilities.pipes.plumbing
 		 * to perform rollback operations if the message is unsuccessfully
 		 * written to the pipe.</P>     
 		 */
-		protected function filter( message:IPipeMessage ):IPipeMessage
+		protected function applyFilter( message:IPipeMessage ):IPipeMessage
 		{
+			filter.apply( this, [ message ] );
 			return message;
 		}
 		
+		protected var mode:String;
+		protected var filter:Function;
 		protected var params:Object;
 		protected var name:String;
 

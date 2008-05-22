@@ -21,31 +21,91 @@ package org.puremvc.as3.multicore.utilities.pipes.messages
 	 */ 
 	public class FilterControlMessage extends Message
 	{
+		/**
+		 * Message type base URI
+		 */
 		protected static const BASE:String  = Message.BASE+'/filter/';
 		
 		/**
-		 * Set filter parameters.
+		 * Set filter parameters message type.
 		 */ 
-		public static const PARAMS:String 	= BASE+'params';
+		public static const SET_PARAMS:String 	= BASE+'setparams';
 		
 		/**
-		 * Toggle to filter bypass mode.
+		 * Set filter method message type.
+		 */ 
+		public static const SET_FILTER:String 	= BASE+'setfilter';
+
+		/**
+		 * Toggle to filter bypass mode message type.
 		 */
-		public static const BYPASS:String 	= BASE+'bypass';
+		public static const BYPASS:String 		= BASE+'bypass';
 		
 		/**
-		 * Toggle to filtering mode (default behavior).
+		 * Toggle to filtering mode  message type. (default behavior).
 		 */
-		public static const FILTER:String  	= BASE+'filter';
+		public static const FILTER:String  		= BASE+'filter';
 
 
 		// Constructor
-		public function FilterControlMessage( type:String, filterName:String, params:Object )
+		public function FilterControlMessage( type:String, name:String, filter:Function=null, params:Object=null )
 		{
-			super( PARAMS, {filterName:filterName}, params );
+			super( type );
+			setName( name );
+			setFilter( filter );
+			setParams( params );
 		}
 
+		/**
+		 * Set the target filter name.
+		 */
+		public function setName( name:String ):void
+		{
+			this.name = name;
+		}
 		
-
+		/**
+		 * Get the target filter name.
+		 */
+		public function getName( ):String
+		{
+			return this.name;
+		}
+		
+		/**
+		 * Set the filter function.
+		 */
+		public function setFilter( filter:Function ):void
+		{
+			this.filter = filter;
+		}
+		
+		/**
+		 * Get the filter function.
+		 */
+		public function getFilter( ):Function
+		{
+			return this.filter;
+		}
+		
+		/**
+		 * Set the parameters object.
+		 */
+		public function setParams( params:Object ):void
+		{
+			this.params = params;
+		}
+		
+		/**
+		 * Get the parameters object.
+		 */
+		public function getParams( ):Object
+		{
+			return this.params;
+		}
+		
+		protected var params:Object;
+		protected var filter:Function;
+		protected var name:String;
 	}
 }
