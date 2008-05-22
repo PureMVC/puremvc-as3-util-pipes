@@ -4,7 +4,7 @@
 <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="../../../../../../../style.css" type="text/css" media="screen">
 <link rel="stylesheet" href="../../../../../../../print.css" type="text/css" media="print">
-<meta content="FilterControlMessage,org.puremvc.as3.multicore.utilities.pipes.messages.FilterControlMessage,BASE,BYPASS,FILTER,PARAMS" name="keywords">
+<meta content="FilterControlMessage,org.puremvc.as3.multicore.utilities.pipes.messages.FilterControlMessage,BASE,BYPASS,FILTER,SET_FILTER,SET_PARAMS,filter,name,params,getFilter,getName,getParams,setFilter,setName,setParams" name="keywords">
 <title>org.puremvc.as3.multicore.utilities.pipes.messages.FilterControlMessage</title>
 </head>
 <body>
@@ -68,7 +68,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <a onclick="javascript:setInheritedVisible(true,'ProtectedProperty');" href="#protectedPropertySummary" class="showHideLink"><img src="../../../../../../../images/collapsed.gif" class="showHideLinkImage"> Show Inherited Protected Properties</a>
 </div>
 </div>
-<table id="summaryTableProtectedProperty" class="summaryTable hideInheritedProtectedProperty" cellpadding="3" cellspacing="0">
+<table id="summaryTableProtectedProperty" class="summaryTable " cellpadding="3" cellspacing="0">
 <tr>
 <th>&nbsp;</th><th colspan="2">Property</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
 </tr>
@@ -76,9 +76,21 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../../../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="Message.html#body">body</a> : Object<div class="summaryTableDescription"></div>
 </td><td class="summaryTableOwnerCol"><a href="Message.html">Message</a></td>
 </tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#filter">filter</a> : Function<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol">FilterControlMessage</td>
+</tr>
 <tr class="hideInheritedProtectedProperty">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../../../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="Message.html#header">header</a> : Object<div class="summaryTableDescription"></div>
 </td><td class="summaryTableOwnerCol"><a href="Message.html">Message</a></td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#name">name</a> : String<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol">FilterControlMessage</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#params">params</a> : Object<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol">FilterControlMessage</td>
 </tr>
 <tr class="hideInheritedProtectedProperty">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../../../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="Message.html#priority">priority</a> : int<div class="summaryTableDescription"></div>
@@ -108,7 +120,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="#FilterControlMessage()">FilterControlMessage</a>(type:String, filterName:String, params:Object)</div>
+<a class="signatureLink" href="#FilterControlMessage()">FilterControlMessage</a>(type:String, name:String, filter:Function = null, params:Object = null)</div>
 <div class="summaryTableDescription"></div>
 </td><td class="summaryTableOwnerCol">FilterControlMessage</td>
 </tr>
@@ -119,12 +131,36 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summaryTableDescription"></div>
 </td><td class="summaryTableOwnerCol"><a href="Message.html">Message</a></td>
 </tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#getFilter()">getFilter</a>():Function</div>
+<div class="summaryTableDescription">
+   Get the filter function.</div>
+</td><td class="summaryTableOwnerCol">FilterControlMessage</td>
+</tr>
 <tr class="hideInheritedMethod">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../../../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
 <a class="signatureLink" href="Message.html#getHeader()">getHeader</a>():Object</div>
 <div class="summaryTableDescription"></div>
 </td><td class="summaryTableOwnerCol"><a href="Message.html">Message</a></td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#getName()">getName</a>():String</div>
+<div class="summaryTableDescription">
+   Get the target filter name.</div>
+</td><td class="summaryTableOwnerCol">FilterControlMessage</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#getParams()">getParams</a>():Object</div>
+<div class="summaryTableDescription">
+   Get the parameters object.</div>
+</td><td class="summaryTableOwnerCol">FilterControlMessage</td>
 </tr>
 <tr class="hideInheritedMethod">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../../../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
@@ -147,12 +183,36 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summaryTableDescription"></div>
 </td><td class="summaryTableOwnerCol"><a href="Message.html">Message</a></td>
 </tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#setFilter()">setFilter</a>(filter:Function):void</div>
+<div class="summaryTableDescription">
+   Set the filter function.</div>
+</td><td class="summaryTableOwnerCol">FilterControlMessage</td>
+</tr>
 <tr class="hideInheritedMethod">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../../../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
 <a class="signatureLink" href="Message.html#setHeader()">setHeader</a>(header:Object):void</div>
 <div class="summaryTableDescription"></div>
 </td><td class="summaryTableOwnerCol"><a href="Message.html">Message</a></td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#setName()">setName</a>(name:String):void</div>
+<div class="summaryTableDescription">
+   Set the target filter name.</div>
+</td><td class="summaryTableOwnerCol">FilterControlMessage</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#setParams()">setParams</a>(params:Object):void</div>
+<div class="summaryTableDescription">
+   Set the parameters object.</div>
+</td><td class="summaryTableOwnerCol">FilterControlMessage</td>
 </tr>
 <tr class="hideInheritedMethod">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../../../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
@@ -187,22 +247,17 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#BYPASS">BYPASS</a> : String<div class="summaryTableDescription">[static]
-   Toggle to filter bypass mode.</div>
+   Toggle to filter bypass mode message type.</div>
 </td><td class="summaryTableOwnerCol">FilterControlMessage</td>
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#FILTER">FILTER</a> : String<div class="summaryTableDescription">[static]
-   Toggle to filtering mode (default behavior).</div>
+   Toggle to filtering mode  message type.</div>
 </td><td class="summaryTableOwnerCol">FilterControlMessage</td>
 </tr>
 <tr class="hideInheritedConstant">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../../../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="Message.html#NORMAL">NORMAL</a> : String<div class="summaryTableDescription">[static]</div>
 </td><td class="summaryTableOwnerCol"><a href="Message.html">Message</a></td>
-</tr>
-<tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#PARAMS">PARAMS</a> : String<div class="summaryTableDescription">[static]
-   Set filter parameters.</div>
-</td><td class="summaryTableOwnerCol">FilterControlMessage</td>
 </tr>
 <tr class="hideInheritedConstant">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../../../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="Message.html#PRIORITY_HIGH">PRIORITY_HIGH</a> : int = 1<div class="summaryTableDescription">[static]</div>
@@ -216,6 +271,16 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../../../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="Message.html#PRIORITY_MED">PRIORITY_MED</a> : int = 5<div class="summaryTableDescription">[static]</div>
 </td><td class="summaryTableOwnerCol"><a href="Message.html">Message</a></td>
 </tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#SET_FILTER">SET_FILTER</a> : String<div class="summaryTableDescription">[static]
+   Set filter method message type.</div>
+</td><td class="summaryTableOwnerCol">FilterControlMessage</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#SET_PARAMS">SET_PARAMS</a> : String<div class="summaryTableDescription">[static]
+   Set filter parameters message type.</div>
+</td><td class="summaryTableOwnerCol">FilterControlMessage</td>
+</tr>
 </table>
 </div>
 <a name="protectedConstantSummary"></a>
@@ -226,7 +291,9 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <th>&nbsp;</th><th colspan="2">Constant</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
 </tr>
 <tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#BASE">BASE</a> : String<div class="summaryTableDescription">[static]</div>
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#BASE">BASE</a> : String<div class="summaryTableDescription">[static]
+   Message type base URI
+   </div>
 </td><td class="summaryTableOwnerCol">FilterControlMessage</td>
 </tr>
 </table>
@@ -236,6 +303,35 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 showHideInherited();
 --></script>
 <div class="MainContent">
+<a name="propertyDetail"></a>
+<div class="detailSectionHeader">Property detail</div>
+<a name="filter"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">filter</td><td class="detailHeaderType">property</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>protected var filter:Function</code>
+</div>
+<a name="name"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">name</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>protected var name:String</code>
+</div>
+<a name="params"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">params</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>protected var params:Object</code>
+</div>
 <a name="constructorDetail"></a>
 <div class="detailSectionHeader">Constructor detail</div>
 <a name="FilterControlMessage()"></a>
@@ -245,7 +341,7 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>public function FilterControlMessage(type:String, filterName:String, params:Object)</code><span class="label">Parameters</span>
+<code>public function FilterControlMessage(type:String, name:String, filter:Function = null, params:Object = null)</code><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code><span class="label">type</span>:String</code></td>
@@ -254,11 +350,118 @@ showHideInherited();
 <td class="paramSpacer">&nbsp;</td>
 </tr>
 <tr>
-<td width="20px"></td><td><code><span class="label">filterName</span>:String</code></td>
+<td width="20px"></td><td><code><span class="label">name</span>:String</code></td>
 </tr>
 <tr>
 <td class="paramSpacer">&nbsp;</td>
 </tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">filter</span>:Function</code> (default = <code>null</code>)<code></code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">params</span>:Object</code> (default = <code>null</code>)<code></code></td>
+</tr>
+</table>
+</div>
+<a name="methodDetail"></a>
+<div class="detailSectionHeader">Method detail</div>
+<a name="getFilter()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">getFilter</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function getFilter():Function</code><p>
+   Get the filter function.
+   </p><p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>Function</code></td>
+</tr>
+</table>
+</div>
+<a name="getName()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">getName</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function getName():String</code><p>
+   Get the target filter name.
+   </p><p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>String</code></td>
+</tr>
+</table>
+</div>
+<a name="getParams()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">getParams</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function getParams():Object</code><p>
+   Get the parameters object.
+   </p><p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>Object</code></td>
+</tr>
+</table>
+</div>
+<a name="setFilter()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">setFilter</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function setFilter(filter:Function):void</code><p>
+   Set the filter function.
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">filter</span>:Function</code></td>
+</tr>
+</table>
+</div>
+<a name="setName()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">setName</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function setName(name:String):void</code><p>
+   Set the target filter name.
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">name</span>:String</code></td>
+</tr>
+</table>
+</div>
+<a name="setParams()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">setParams</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function setParams(params:Object):void</code><p>
+   Set the parameters object.
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code><span class="label">params</span>:Object</code></td>
 </tr>
@@ -273,8 +476,9 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>protected static const BASE:String</code>
-</div>
+<code>protected static const BASE:String</code><p>
+   Message type base URI
+   </p></div>
 <a name="BYPASS"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
@@ -283,7 +487,7 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public static const BYPASS:String</code><p>
-   Toggle to filter bypass mode.
+   Toggle to filter bypass mode message type.
    </p></div>
 <a name="FILTER"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
@@ -293,17 +497,27 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public static const FILTER:String</code><p>
-   Toggle to filtering mode (default behavior).
+   Toggle to filtering mode  message type. (default behavior).
    </p></div>
-<a name="PARAMS"></a>
+<a name="SET_FILTER"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
-<td class="detailHeaderName">PARAMS</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+<td class="detailHeaderName">SET_FILTER</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
 </tr>
 </table>
 <div class="detailBody">
-<code>public static const PARAMS:String</code><p>
-   Set filter parameters.
+<code>public static const SET_FILTER:String</code><p>
+   Set filter method message type.
+   </p></div>
+<a name="SET_PARAMS"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">SET_PARAMS</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const SET_PARAMS:String</code><p>
+   Set filter parameters message type.
    </p></div>
 <br>
 <br>
