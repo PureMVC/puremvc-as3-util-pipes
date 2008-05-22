@@ -2,7 +2,7 @@ PureMVC AS3/MultiCore Utility – Pipes
 Copyright (c) 2008 Cliff Hall<cliff.hall@puremvc.org>
 Your reuse is governed by the Creative Commons Attribution 3.0 License
 --------------------------------------------------------------------------
-Release Date: 05/21/08
+Release Date: 05/22/08
     Platform: ActionScript 3  
      Version: 0 
     Revision: 7
@@ -17,7 +17,9 @@ Release Date: 05/21/08
       internal URI scheme to manage message namespace. Filter and Queue: 
       modified to use new control message names. Queue: Added support for 
       toggling sort-by-priority/fifo behavior. FilterControlMessage has its
-      own getters and setters for name, filter and params properties. 
+      own getters and setters for name, filter and params properties. Filter:
+      now accepts a filter function just like it accepts parameters, and
+      so does not need to be sublcassed to work.
       
 0.6 - Message: Allow null header. Queue control flush messages only require
       a type, so thats the minimum requirement. Queue, Message, Filter: 
