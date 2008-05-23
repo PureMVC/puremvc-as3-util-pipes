@@ -44,6 +44,19 @@ package org.puremvc.as3.multicore.utilities.pipes.plumbing
 			return true;
 		}
 		
+		/** 
+		 * Disconnect the most recently connected output fitting. (LIFO)
+		 * <P>
+		 * To disconnect all outputs, you must call this 
+		 * method repeatedly untill it returns null.</P>
+		 * 
+		 * @param output the IPipeFitting to connect for output.
+		 */
+		public function disconnect( ):IPipeFitting 
+		{
+			return outputs.pop() as IPipeFitting;
+		}
+
 		/**
 		 * Write the message to all connected outputs.
 		 * <P>

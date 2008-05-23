@@ -6,20 +6,39 @@
 package org.puremvc.as3.multicore.utilities.pipes.plumbing
 {
 	import org.puremvc.as3.multicore.utilities.pipes.interfaces.IPipeFitting;
+	import org.puremvc.as3.multicore.utilities.pipes.interfaces.IPipeMessage;
 	
 	/**
 	 * Pipe Junction.
+	 * 
 	 * <P>
-	 * Manages the input and output pipes for a Module. 
+	 * Manages Pipes for a Module. 
+	 * 
+	 * <P>
+	 * When you register a Pipe with a Junction, it is 
+	 * declared as being an INPUT pipe or an OUTPUT pipe.</P> 
+	 * 
+	 * <P>
+	 * You can retrieve or remove a registered Pipe by name, 
+	 * check to see if a Pipe with a given name exists,or if 
+	 * it exists AND is an INPUT or an OUTPUT Pipe.</P> 
+	 * 
+	 * <P>
+	 * You can send an <code>IPipeMessage</code> on a named INPUT Pipe 
+	 * or add a <code>PipeListener</code> to registered INPUT Pipe.</P>
 	 */
 	public class Junction
 	{
-		// INPUT Pipe Type
+		/**
+		 *  INPUT Pipe Type
+		 */
 		public static const INPUT:String 	= 'input';
-		// OUTPUT Pipe Type
+		/**
+		 *  OUTPUT Pipe Type
+		 */
 		public static const OUTPUT:String 	= 'output';
 		
-		// Schoolhouse rock, heh.
+		// Constructor. 
 		public function Junction( )
 		{
 		}
@@ -62,16 +81,18 @@ package org.puremvc.as3.multicore.utilities.pipes.plumbing
 		
 		/**
 		 * Does this junction have a pipe by this name?
+		 * 
 		 * @param name the pipe to check for 
 		 * @return Boolean whether as pipe is registered with that name.
 		 */ 
 		public function hasPipe( name:String ):Boolean
 		{
-			return ( pipesMap[name] == null );
+			return ( pipesMap[ name ] != null );
 		}
 		
 		/**
 		 * Does this junction have an INPUT pipe by this name?
+		 * 
 		 * @param name the pipe to check for 
 		 * @return Boolean whether an INPUT pipe is registered with that name.
 		 */ 
@@ -82,6 +103,7 @@ package org.puremvc.as3.multicore.utilities.pipes.plumbing
 
 		/**
 		 * Does this junction have an OUTPUT pipe by this name?
+		 * 
 		 * @param name the pipe to check for 
 		 * @return Boolean whether an OUTPUT pipe is registered with that name.
 		 */ 
@@ -101,7 +123,8 @@ package org.puremvc.as3.multicore.utilities.pipes.plumbing
 		 */
 		public function removePipe( name:String ):void 
 		{
-			if ( hasPipe(name) ) {
+			if ( hasPipe(name) ) 
+			{
 				var type:String = pipeTypesMap[name];
 				var pipesList:Array;
 				switch (type) {
@@ -125,6 +148,7 @@ package org.puremvc.as3.multicore.utilities.pipes.plumbing
 
 		/**
 		 * Retrieve the named pipe.
+		 * 
 		 * @param name the pipe to retrieve
 		 * @return IPipeFitting the pipe registered by the given name if it exists
 		 */
@@ -144,25 +168,52 @@ package org.puremvc.as3.multicore.utilities.pipes.plumbing
 		 * @param context the calling context or 'this' object  
 		 * @param listener the function on the context to call
 		 */
-		public function addPipeListener( name:String, context:Object, listener:Function ):Boolean 
+		public function addPipeListener( inputPipeName:String, context:Object, listener:Function ):Boolean 
 		{
 			var success:Boolean=false;
-			if ( hasInputPipe(name) )
+			if ( hasInputPipe(inputPipeName) )
 			{
-				var pipeListener:PipeListener = new PipeListener(context, listener);
-				var pipe:IPipeFitting = pipesMap[name] as IPipeFitting;
-				success = pipe.connect(pipeListener);
+				var pipe:IPipeFitting = pipesMap[inputPipeName] as IPipeFitting;
+				success = pipe.connect( new PipeListener(context, listener) );
 			} 
 			return success;
 		}
 		
-		// The names of the INPUT pipes
+		/**
+		 * Send a message on an OUTPUT pipe.
+		 * 
+		 * @param name the OUTPUT pipe to send the message on
+		 * @param message the IPipeMessage to send  
+		 */
+		public function sendMessage( outputPipeName:String, message:IPipeMessage ):Boolean 
+		{
+			var success:Boolean=false;
+			if ( hasOutputPipe(outputPipeName) )
+			{
+				var pipe:IPipeFitting = pipesMap[outputPipeName] as IPipeFitting;
+				success = pipe.write(message);
+			} 
+			return success;
+		}
+
+		/**
+		 *  The names of the INPUT pipes
+		 */
 		protected var inputPipes:Array = new Array();
-		// The names of the OUTPUT pipes
+		
+		/**
+		 *  The names of the OUTPUT pipes
+		 */
 		protected var outputPipes:Array = new Array();
-		// The map of pipe names to their pipes
+		
+		/** 
+		 * The map of pipe names to their pipes
+		 */
 		protected var pipesMap:Array = new Array();
-		// The map of pipe names to their types
+		
+		/**
+		 * The map of pipe names to their types
+		 */
 		protected var pipeTypesMap:Array = new Array();
 
 	}

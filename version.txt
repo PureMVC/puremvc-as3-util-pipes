@@ -5,10 +5,21 @@ Your reuse is governed by the Creative Commons Attribution 3.0 License
 Release Date: 05/22/08
     Platform: ActionScript 3  
      Version: 0 
-    Revision: 7
+    Revision: 8
       Author:Cliff Hall <cliff.hall@puremvc.org>
      License: Creative Commons Attribution 3.0 United States License
 --------------------------------------------------------------------------
+0.8 - IPipeFitting defines and all concrete fittings now implement a 
+      disconnect method, which disconnects and returns the fitting connected 
+      to the output.  TeeSplit is special because it has multiple connected
+      outputs, so the disconnect methods must be called multiple times to 
+      disconnect them all. They are disconnected in LIFO order. The disconnected
+      fitting is returned so that if you are splicing into a pipeline, you 
+      have a reference to both sides of the splice to reconnect around your
+      new fitting. Also fixed bug in Junction.hasPipe(). Added sendMessage
+      method to Junction, allowing you to send a message on a previously
+      registered output pipe.
+            
 0.7 - Message: refactored out of pipes/plumbing into pipes/messages folder. 
       Message type changed to String. Added QueueControlMessage and 
       FilterControlMessage, subclasses of Message that simplify creation of 

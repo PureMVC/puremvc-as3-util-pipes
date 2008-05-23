@@ -22,10 +22,20 @@ package org.puremvc.as3.multicore.utilities.pipes.plumbing
 			this.listener = listener;
 		}
 		
-		// Can't connect anything beyond this
+		/**
+		 *  Can't connect anything beyond this.
+		 */
 		public function connect(output:IPipeFitting):Boolean
 		{
 			return false;
+		}
+	
+		/**
+		 *  Can't disconnect since you can't connect, either.
+		 */
+		public function disconnect():IPipeFitting
+		{
+			return null;
 		}
 	
 		// Write the message to the listener

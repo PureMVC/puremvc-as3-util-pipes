@@ -5,8 +5,8 @@
  */
 package org.puremvc.as3.multicore.utilities.pipes.plumbing
 {
-	import org.puremvc.as3.multicore.utilities.pipes.interfaces.IPipeMessage;
 	import org.puremvc.as3.multicore.utilities.pipes.interfaces.IPipeFitting;
+	import org.puremvc.as3.multicore.utilities.pipes.interfaces.IPipeMessage;
 
 	/**
 	 * Pipe.
@@ -43,12 +43,31 @@ package org.puremvc.as3.multicore.utilities.pipes.plumbing
 		}
 		
 		/**
+		 * Disconnect the Pipe Fitting connected to the output.
+		 * <P>
+		 * This disconnects the output fitting, returning a 
+		 * reference to it. If you were splicing another fitting
+		 * into a pipeline, you need to keep (at least briefly) 
+		 * a reference to both sides of the pipeline in order to 
+		 * connect them to the input and output of whatever 
+		 * fiting that you're splicing in.</P>
+		 * 
+		 * @return IPipeFitting the now disconnected output fitting
+		 */
+		public function disconnect(  ) : IPipeFitting
+		{
+			var disconnectedFitting:IPipeFitting = this.output;
+			this.output = null;
+			return disconnectedFitting;
+		}
+		
+		/**
 		 * Write the message to the connected output.
 		 * 
 		 * @param message the message to write
 		 * @return Boolean whether any connected downpipe outputs failed
 		 */
-		public function write( message:IPipeMessage ):Boolean
+		public function write( message:IPipeMessage ) : Boolean
 		{
 			return output.write( message );
 		}

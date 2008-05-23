@@ -30,6 +30,20 @@ package org.puremvc.as3.multicore.utilities.pipes.interfaces
 		function connect( output:IPipeFitting ) : Boolean;
 
 		/**
+		 * Disconnect the Pipe Fitting connected to the output.
+		 * <P>
+		 * This disconnects the output fitting, returning a 
+		 * reference to it. If you were splicing another fitting
+		 * into a pipeline, you need to keep (at least briefly) 
+		 * a reference to both sides of the pipeline in order to 
+		 * connect them to the input and output of whatever 
+		 * fiting that you're splicing in.</P>
+		 * 
+		 * @return IPipeFitting the now disconnected output fitting
+		 */
+		function disconnect( ) : IPipeFitting;
+
+		/**
 		 * Write the message to the output Pipe Fitting.
 		 * <P>
 		 * There may be subsequent filters and tees
