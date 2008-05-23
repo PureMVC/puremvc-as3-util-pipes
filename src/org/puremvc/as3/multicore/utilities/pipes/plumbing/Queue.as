@@ -44,10 +44,12 @@ package org.puremvc.as3.multicore.utilities.pipes.plumbing
 		 * return to normal enqueing operation.</P>
 		 * <P>
 		 * The SORT message type tells the Queue to sort all 
-		 * subsequent incoming messages by priority. This 
-		 * behavior continues even after a FLUSH, and can be
-		 * turned off by the FIFO message, which is the default
-		 * behavior for enqueue/dequeue.</P> 
+		 * <I>subsequent</I> incoming messages by priority. If there
+		 * are unflushed messages in the queue, they will not be
+		 * sorted unless a new message is sent before the next FLUSH.
+		 * Sorting-by-priority behavior continues even after a FLUSH, 
+		 * and can be turned off by sending a FIFO message, which is 
+		 * the default behavior for enqueue/dequeue.</P> 
 		 */ 
 		override public function write( message:IPipeMessage ):Boolean
 		{
@@ -84,15 +86,19 @@ package org.puremvc.as3.multicore.utilities.pipes.plumbing
 		protected function store( message:IPipeMessage ):void
 		{
 			messages.push( message );
+			if (mode == QueueControlMessage.SORT ) messages.sort( sortMessagesByPriority );
 		}
 
 
 		/**
 		 * Sort the Messages by priority.
 		 */
-		protected function sortMessagesByPriority():void
+		protected function sortMessagesByPriority(msgA:IPipeMessage, msgB:IPipeMessage):Number
 		{
-			//TBD: Sort the messages by priority.	
+			var num:Number = 0;
+			if ( msgA.getPriority() < msgB.getPriority() ) num = -1;
+			if ( msgA.getPriority() > msgB.getPriority() ) num = 1;
+			return num;
 		}
 		
 		/**
