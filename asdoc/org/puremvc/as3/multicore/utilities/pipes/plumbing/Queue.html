@@ -158,7 +158,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="#sortMessagesByPriority()">sortMessagesByPriority</a>():void</div>
+<a class="signatureLink" href="#sortMessagesByPriority()">sortMessagesByPriority</a>(msgA:<a href="../interfaces/IPipeMessage.html">IPipeMessage</a>, msgB:<a href="../interfaces/IPipeMessage.html">IPipeMessage</a>):Number</div>
 <div class="summaryTableDescription">
    Sort the Messages by priority.</div>
 </td><td class="summaryTableOwnerCol">Queue</td>
@@ -243,9 +243,28 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>protected function sortMessagesByPriority():void</code><p>
+<code>protected function sortMessagesByPriority(msgA:<a href="../interfaces/IPipeMessage.html">IPipeMessage</a>, msgB:<a href="../interfaces/IPipeMessage.html">IPipeMessage</a>):Number</code><p>
    Sort the Messages by priority.
-   </p></div>
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">msgA</span>:<a href="../interfaces/IPipeMessage.html">IPipeMessage</a></code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">msgB</span>:<a href="../interfaces/IPipeMessage.html">IPipeMessage</a></code></td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>Number</code></td>
+</tr>
+</table>
+</div>
 <a name="store()"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
@@ -280,10 +299,12 @@ showHideInherited();
    return to normal enqueing operation.</P>
    <P>
    The SORT message type tells the Queue to sort all 
-   subsequent incoming messages by priority. This 
-   behavior continues even after a FLUSH, and can be
-   turned off by the FIFO message, which is the default
-   behavior for enqueue/dequeue.</P> 
+   <I>subsequent</I> incoming messages by priority. If there
+   are unflushed messages in the queue, they will not be
+   sorted unless a new message is sent before the next FLUSH.
+   Sorting-by-priority behavior continues even after a FLUSH, 
+   and can be turned off by sending a FIFO message, which is 
+   the default behavior for enqueue/dequeue.</P> 
    </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>

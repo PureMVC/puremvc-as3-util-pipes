@@ -2,13 +2,16 @@ PureMVC AS3/MultiCore Utility – Pipes
 Copyright (c) 2008 Cliff Hall<cliff.hall@puremvc.org>
 Your reuse is governed by the Creative Commons Attribution 3.0 License
 --------------------------------------------------------------------------
-Release Date: 05/22/08
+Release Date: 05/23/08
     Platform: ActionScript 3  
      Version: 0 
-    Revision: 8
+    Revision: 9
       Author:Cliff Hall <cliff.hall@puremvc.org>
      License: Creative Commons Attribution 3.0 United States License
 --------------------------------------------------------------------------
+0.9 - Queue: sort-by-priority now works and switching between SORT
+	  and FIFO mode operation is tested.
+	  
 0.8 - IPipeFitting defines and all concrete fittings now implement a 
       disconnect method, which disconnects and returns the fitting connected 
       to the output.  TeeSplit is special because it has multiple connected
