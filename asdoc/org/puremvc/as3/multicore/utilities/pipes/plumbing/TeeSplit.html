@@ -4,7 +4,7 @@
 <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="../../../../../../../style.css" type="text/css" media="screen">
 <link rel="stylesheet" href="../../../../../../../print.css" type="text/css" media="print">
-<meta content="TeeSplit,org.puremvc.as3.multicore.utilities.pipes.plumbing.TeeSplit,outputs,connect,write" name="keywords">
+<meta content="TeeSplit,org.puremvc.as3.multicore.utilities.pipes.plumbing.TeeSplit,outputs,connect,disconnect,write" name="keywords">
 <title>org.puremvc.as3.multicore.utilities.pipes.plumbing.TeeSplit</title>
 </head>
 <body>
@@ -88,6 +88,15 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
+<a class="signatureLink" href="#disconnect()">disconnect</a>():<a href="../interfaces/IPipeFitting.html">IPipeFitting</a>
+</div>
+<div class="summaryTableDescription"> 
+   Disconnect the most recently connected output fitting.</div>
+</td><td class="summaryTableOwnerCol">TeeSplit</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
 <a class="signatureLink" href="#write()">write</a>(message:<a href="../interfaces/IPipeMessage.html">IPipeMessage</a>):Boolean</div>
 <div class="summaryTableDescription">
    Write the message to all connected outputs.</div>
@@ -166,6 +175,27 @@ showHideInherited();
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20"></td><td><code>Boolean</code></td>
+</tr>
+</table>
+</div>
+<a name="disconnect()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">disconnect</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function disconnect():<a href="../interfaces/IPipeFitting.html">IPipeFitting</a></code><p> 
+   Disconnect the most recently connected output fitting. (LIFO)
+   <P>
+   To disconnect all outputs, you must call this 
+   method repeatedly untill it returns null.</P>
+   
+   </p><p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code><a href="../interfaces/IPipeFitting.html">IPipeFitting</a></code></td>
 </tr>
 </table>
 </div>
