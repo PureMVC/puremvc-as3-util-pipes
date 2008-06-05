@@ -2,7 +2,7 @@ PureMVC AS3/MultiCore Utility – Pipes
 Copyright (c) 2008 Cliff Hall<cliff.hall@puremvc.org>
 Your reuse is governed by the Creative Commons Attribution 3.0 License
 --------------------------------------------------------------------------
-Release Date: 06/04/08
+Release Date: 06/05/08
     Platform: ActionScript 3  
      Version: 1 
     Revision: 0
