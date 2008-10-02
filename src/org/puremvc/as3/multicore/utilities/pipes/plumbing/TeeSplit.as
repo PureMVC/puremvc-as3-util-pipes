@@ -57,6 +57,34 @@ package org.puremvc.as3.multicore.utilities.pipes.plumbing
 			return outputs.pop() as IPipeFitting;
 		}
 
+		/** 
+		 * Disconnect a given output fitting. 
+		 * <P>
+		 * If the fitting passed in is connected
+		 * as an output of this <code>TeeSplit</code>, then
+		 * it is disconnected and the reference returned.</P>
+		 * <P>
+		 * If the fitting passed in is not connected as an 
+		 * output of this <code>TeeSplit</code>, then <code>null</code>
+		 * is returned.</P>
+		 * 
+		 * @param output the IPipeFitting to connect for output.
+		 */
+		public function disconnectFitting( target:IPipeFitting ):IPipeFitting 
+		{
+			var removed:IPipeFitting;
+			for (var i:int=0;i<outputs.length;i++)
+			{
+				var output:IPipeFitting = outputs[i];
+				if (output === target) {
+					outputs.splice(i,1);	
+					removed=output;
+					break;
+				}
+			}
+			return removed;
+		}
+
 		/**
 		 * Write the message to all connected outputs.
 		 * <P>

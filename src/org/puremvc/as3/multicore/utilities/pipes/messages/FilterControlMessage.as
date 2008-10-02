@@ -40,7 +40,7 @@ package org.puremvc.as3.multicore.utilities.pipes.messages
 		/**
 		 * Message type base URI
 		 */
-		protected static const BASE:String  = Message.BASE+'/filter/';
+		protected static const BASE:String  = Message.BASE+'filter-control/';
 		
 		/**
 		 * Set filter parameters.
