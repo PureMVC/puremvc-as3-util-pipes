@@ -15,7 +15,6 @@ Production - [Version 1.1](https://github.com/PureMVC/puremvc-as3-util-pipes/blo
 ## Platforms / Technologies
 * [ActionScript 3](http://en.wikipedia.org/wiki/ActionScript)
 * [Flash](http://en.wikipedia.org/wiki/Adobe_flash)
-* [ActionScript 3](http://en.wikipedia.org/wiki/Adobe_Flex)
 
 ## License
 * PureMVC AS3/MultiCore Utility – Pipes - Copyright © 2008 Cliff Hall
